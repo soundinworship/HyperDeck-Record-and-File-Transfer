@@ -9,4 +9,4 @@ You can use the web browser interfact to adjust settings such as "Auto Record on
 
 This project does not yet include every HyperDeck command possible, but I would love for this project to grow to fit more use cases.
 
-Feel free to reach out if you would like to enhance make this project.
+Feel free to reach out if you would like to enhance this project.
