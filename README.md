@@ -1,4 +1,4 @@
-# HyperDeck-Record-and-File-Transfer
+# HyperDeck Record and File Transfer
 Controls a local HyperDeck, and allows the user to transfer its video files to a local computer.
 
 This repository is built using Python 3.11 and requires the aiohttp module.
