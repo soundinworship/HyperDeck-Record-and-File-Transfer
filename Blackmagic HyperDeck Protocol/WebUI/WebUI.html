@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--
+    To Do:
+    Add this all to github
+-->
+
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Hyperdeck Control and File Transfer</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="resources/favicon.ico"
+    />
+    <link rel="stylesheet" type="text/css" href="resources/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div id="container">
+      <h1><span class="h-orange">HyperDeck</span> Control and File Transfer</h1>
+      <div id="controls">
+        <div class="header">
+          <div id="playback">
+            <!--<label><input type="checkbox" id="loop">Loop</label>
+                    <label><input type="checkbox" id="single" checked="true">Single Clip</label>-->
+            <label
+              ><input
+                type="range"
+                min="-16"
+                max="16"
+                step="0.25"
+                value="1.0"
+                class="slider"
+                id="speed" /><span>Speed </span><span id="speed_val"></span
+            ></label>
+          </div>
+          <div id="hyperdeck">
+            <div id="sd-cards">
+              <div id="sd-1-all" class="sd-all">
+                <div id="sd-1-ind" class="sd-ind"></div>
+                <div id="sd-1-slot" class="sd-slot">
+                  <div
+                    id="sd-1"
+                    class="sd-empty"
+                    title="Click to select"
+                    disabled
+                  ></div>
+                </div>
+              </div>
+              <div id="sd-2-all" class="sd-all">
+                <div id="sd-2-ind" class="sd-ind"></div>
+                <div id="sd-2-slot" class="sd-slot">
+                  <div
+                    id="sd-2"
+                    class="sd-empty"
+                    title="Click to select"
+                    disabled
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div id="transport">
+              <button id="play" title="Play Clip">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button id="stop" title="Stop Recording">
+                <i class="fa-solid fa-stop"></i>
+              </button>
+              <button id="record" title="Record">
+                <i id="record-icon" class="fa-solid fa-circle"></i>
+              </button>
+              <button id="settings-btn" title="View/Change Settings">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+              </button>
+              <button id="prev" title="Previous">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <button id="next" title="Next">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+              <button title="Switch view to Output" id="view">
+                <i class="fa-solid fa-desktop"></i>
+              </button>
+              <button title="Get info about audio and video settings" id="info-btn">
+                <i class="fa-solid fa-info"></i>
+              </button>
+            </div>
+            <div id="display">
+              <div id="disp-top">
+                <div id="disp-rec"></div>
+                <div id="disp-format"></div>
+                <div id="disp-sd">
+                  <div id="sd">SD</div>
+                  <div id="sd-num">&nbsp;</div>
+                </div>
+              </div>
+              <div id="disp-time"></div>
+              <div id="msg-box" style="display: flex">
+                <div class="alert"></div>
+              </div>
+              <div id="settings" style="display: none">
+                <div class="check-box">
+                  <input
+                    type="checkbox"
+                    id="auto-record"
+                    name="auto-record"
+                    value="auto-record"
+                  />
+                  <label for="auto-record">Auto-Record on Startup</label>
+                </div>
+                <div class="check-box">
+                  <input
+                    type="checkbox"
+                    id="auto-download"
+                    name="auto-download"
+                    value="auto-download"
+                  />
+                  <label for="auto-download">Auto-Download on Stop</label>
+                </div>
+              </div>
+              <div id="format-options" style="display: none">
+                <h4>Choose Format Type</h4>
+                <div class="options-holder">
+                  <div id="exFat">exFat</div>
+                  <div id="hfs">HFS+</div>
+                </div>
+              </div>
+              <div id="format-confirm" style="display: none">
+                <h4>Are you sure?</h4>
+                <div class="options-holder">
+                  <div id="format-yes">Yes</div>
+                  <div id="format-no">No</div>
+                </div>
+              </div>
+            </div>
+            <div id="looks">
+              <img
+                id="logo"
+                src="https://images.blackmagicdesign.com/images/common/logos/gn-logo.svg"
+              />
+              <div id="knob"></div>
+            </div>
+          </div>
+        </div>
+        <div id="media">
+          <label
+            ><h2>HyperDeck Files</h2>
+          </label>
+            <div id="tools">
+              <button id="clips_refresh" title="Refresh Clips">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+              <button id="format" title="Format disk">
+                <i class="fa-solid fa-dumpster"></i>
+              </button>
+              <button
+                title="Select a file to download"
+                id="download"
+                disabled
+                style="cursor: not-allowed"
+              >
+                <i class="fas fa-download"></i>
+              </button>
+              <button
+                title="Select a file to delete"
+                id="delete"
+                disabled
+                style="cursor: not-allowed"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+            <h3 id="current-slot"></h3>
+            <span class="tip">Click an SD card on the HyperDeck above to switch cards.</span>
+            <select id="clips" size="16"></select>
+        </div>
+      </div>
+    </div>
+    <div id="loading" style="display: none;" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div id="footer"></div>
+
+    <script type="text/javascript" src="resources/frontend.js"></script>
+  </body>
+</html>
